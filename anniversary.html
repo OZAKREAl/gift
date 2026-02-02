@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>♥ Люба, ты самая лучшая! ♥</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&family=Permanent+Marker&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: 'Comic Neue', cursive;
+            background: linear-gradient(135deg, #ffc0cb, #ff69b4, #da70d6, #ff1493);
+            background-size: 400% 400%;
+            animation: gradientShift 20s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Фоновые котики */
+        body::before {
+            content: '🐱 🐈 🐱 🐈 🐱 🐈 🐱 🐈 🐱 🐈';
+            position: fixed;
+            font-size: 60px;
+            opacity: 0.1;
+            top: 10%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 1;
+            animation: floatCats 15s infinite;
+        }
+        
+        body::after {
+            content: '🐱 🐈 🐱 🐈 🐱 🐈 🐱 🐈 🐱 🐈';
+            position: fixed;
+            font-size: 60px;
+            opacity: 0.1;
+            bottom: 10%;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            z-index: 1;
+            animation: floatCats 15s infinite reverse;
+        }
+        
+        @keyframes floatCats {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            background: linear-gradient(135deg, rgba(255, 240, 245, 0.98), rgba(255, 228, 225, 0.98));
+            border-radius: 40px;
+            padding: 40px;
+            max-width: 700px;
+            width: 95%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+                        inset 0 0 30px rgba(255, 255, 255, 0.5);
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            border: 8px ridge #ff69b4;
+            animation: cardFloat 3s ease-in-out infinite;
+        }
+        
+        /* Адаптив для мобильных */
+        @media (max-width: 768px) {
+            .container {
+                padding: 25px;
+                width: 92%;
+                border-radius: 25px;
+                border: 5px ridge #ff69b4;
+            }
+            
+            .cat-header {
+                font-size: 50px !important;
+            }
+            
+            h1 {
+                font-size: 32px !important;
+            }
+            
+            .date {
+                font-size: 18px !important;
+            }
+            
+            .counter {
+                font-size: 22px !important;
+                padding: 10px 20px !important;
+            }
+            
+            .decorations {
+                font-size: 35px !important;
+            }
+            
+            .btn {
+                font-size: 18px !important;
+                padding: 15px 30px !important;
+            }
+        }
+        
+        /* Специально для iPhone (390x844 и похожие) */
+        @media (max-width: 430px) {
+            body {
+                padding: 10px 0;
+            }
+            
+            .container {
+                padding: 20px;
+                width: 90%;
+                border-radius: 20px;
+            }
+            
+            .cat-header {
+                font-size: 45px !important;
+                margin-bottom: 5px !important;
+            }
+            
+            h1 {
+                font-size: 28px !important;
+                margin: 10px 0 !important;
+            }
+            
+            .date {
+                font-size: 16px !important;
+                margin: 10px 0 !important;
+            }
+            
+            .counter {
+                font-size: 20px !important;
+                padding: 8px 15px !important;
+                margin: 15px 0 !important;
+            }
+            
+            .decorations {
+                font-size: 30px !important;
+                margin: 15px 0 !important;
+            }
+            
+            .btn {
+                font-size: 16px !important;
+                padding: 12px 25px !important;
+                margin-top: 15px !important;
+            }
+            
+            .sparkle {
+                width: 15px;
+                height: 15px;
+            }
+        }
+        
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-15px) scale(1.02); }
+        }
+        
+        /* Стразы */
+        .sparkle {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background: radial-gradient(circle, gold, orange, gold);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: sparkleAnim 3s ease-in-out infinite;
+            opacity: 0;
+            filter: drop-shadow(0 0 5px gold);
+        }
+        
+        @keyframes sparkleAnim {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.8) rotate(180deg); }
+        }
+        
+        .cat-header {
+            font-size: 70px;
+            margin-bottom: 10px;
+            animation: catWiggle 2s ease-in-out infinite;
+        }
+        
+        @keyframes catWiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        
+        h1 {
+            font-family: 'Permanent Marker', cursive;
+            color: #ff1493;
+            font-size: 42px;
+            margin: 15px 0;
+            text-shadow: 3px 3px 0 #fff, 4px 4px 0 #ff69b4, 5px 5px 0 #ff1493;
+            animation: titleBounce 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes titleBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .date {
+            font-size: 26px;
+            color: #d63384;
+            margin: 15px 0;
+            font-weight: bold;
+            text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+            background: linear-gradient(90deg, #ff69b4, #ff1493, #ff69b4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .counter {
+            font-size: 32px;
+            color: #d63384;
+            margin: 25px 0;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 15px 30px;
+            border-radius: 20px;
+            border: 4px dotted #ff69b4;
+            display: inline-block;
+        }
+        
+        .decorations {
+            font-size: 50px;
+            margin: 20px 0;
+            animation: decorSwing 3s ease-in-out infinite;
+        }
+        
+        @keyframes decorSwing {
+            0%, 100% { transform: rotate(-3deg) scale(1); }
+            50% { transform: rotate(3deg) scale(1.1); }
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #ff1493, #ff69b4, #ff1493);
+            color: white;
+            border: 5px solid #fff;
+            padding: 20px 50px;
+            font-size: 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(255, 20, 147, 0.5),
+                        inset 0 0 20px rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            text-transform: uppercase;
+            animation: buttonGlow 2s ease-in-out infinite;
+        }
+        
+        @keyframes buttonGlow {
+            0%, 100% { box-shadow: 0 8px 20px rgba(255, 20, 147, 0.5); }
+            50% { box-shadow: 0 8px 30px rgba(255, 20, 147, 0.8), 0 0 40px rgba(255, 20, 147, 0.4); }
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 12px 35px rgba(255, 20, 147, 0.7);
+        }
+        
+        .btn:active {
+            transform: translateY(0) scale(0.95);
+        }
+        
+        /* Слайдшоу */
+        .slideshow {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slideshow.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .slide {
+            display: none;
+            max-width: 800px;
+            width: 90%;
+            background: linear-gradient(135deg, #fff0f5, #ffe6f0);
+            border-radius: 30px;
+            padding: 40px;
+            text-align: center;
+            border: 10px ridge #ff69b4;
+            box-shadow: 0 0 50px rgba(255, 20, 147, 0.8);
+            animation: slideIn 0.5s;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        /* Адаптив для слайдов на мобильных */
+        @media (max-width: 768px) {
+            .slide {
+                width: 92%;
+                padding: 25px;
+                border-radius: 20px;
+                border: 6px ridge #ff69b4;
+                max-height: 85vh;
+            }
+            
+            .slide-image {
+                height: 280px !important;
+                font-size: 60px !important;
+            }
+            
+            .slide-title {
+                font-size: 26px !important;
+                margin: 15px 0 !important;
+            }
+            
+            .slide-text {
+                font-size: 17px !important;
+                padding: 15px !important;
+                margin: 15px 0 !important;
+            }
+            
+            .slide-nav {
+                flex-direction: column;
+                gap: 10px !important;
+            }
+            
+            .slide-btn {
+                width: 100%;
+                font-size: 18px !important;
+                padding: 12px 30px !important;
+            }
+            
+            .close-btn {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 40px !important;
+                top: 10px !important;
+                right: 10px !important;
+            }
+        }
+        
+        @media (max-width: 430px) {
+            .slide {
+                width: 90%;
+                padding: 20px;
+                border-radius: 15px;
+                max-height: 90vh;
+            }
+            
+            .slide-image {
+                height: 240px !important;
+                font-size: 50px !important;
+                margin: 15px auto !important;
+            }
+            
+            .slide-title {
+                font-size: 22px !important;
+                margin: 12px 0 !important;
+            }
+            
+            .slide-text {
+                font-size: 15px !important;
+                padding: 12px !important;
+                margin: 12px 0 !important;
+                line-height: 1.5 !important;
+            }
+            
+            .slide-btn {
+                font-size: 16px !important;
+                padding: 10px 25px !important;
+            }
+            
+            .close-btn {
+                width: 45px !important;
+                height: 45px !important;
+                font-size: 35px !important;
+            }
+        }
+        
+        @keyframes slideIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide-image {
+            width: 100%;
+            max-width: 500px;
+            height: 400px;
+            background: linear-gradient(135deg, #ffc0cb, #ff69b4);
+            border-radius: 20px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            border: 5px dashed #ff1493;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .slide-image::before {
+            content: '📷';
+            position: absolute;
+            font-size: 100px;
+            opacity: 0.3;
+        }
+        
+        .slide-title {
+            font-family: 'Permanent Marker', cursive;
+            font-size: 36px;
+            color: #ff1493;
+            margin: 20px 0;
+            text-shadow: 2px 2px 0 #fff, 3px 3px 0 #ff69b4;
+        }
+        
+        .slide-text {
+            font-size: 22px;
+            line-height: 1.6;
+            color: #333;
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 15px;
+            border: 3px dotted #ff69b4;
+        }
+        
+        .slide-nav {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .slide-btn {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            color: white;
+            border: 3px solid white;
+            padding: 15px 40px;
+            font-size: 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Comic Neue', cursive;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .slide-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 20px rgba(255, 20, 147, 0.6);
+        }
+        
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            background: #ff1493;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid white;
+            transition: all 0.3s ease;
+        }
+        
+        .close-btn:hover {
+            transform: rotate(90deg) scale(1.2);
+            background: #ff69b4;
+        }
+        
+        /* Падающие элементы */
+        .falling-item {
+            position: fixed;
+            top: -50px;
+            font-size: 40px;
+            animation: fall 5s linear;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        @keyframes fall {
+            to {
+                top: 110vh;
+                transform: translateX(100px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="cat-header">🐱 ♥ 🐈</div>
+        <h1>Люба ☺</h1>
+        <div class="date">С 2 января 2026 ♥</div>
+        
+        <div class="counter" id="counter">
+            Прошло: <span id="days">0</span> дней ☻
+        </div>
+        
+        <div class="decorations">🌹 🍫 🌸 🍬 🌺</div>
+        
+        <button class="btn" onclick="showSlideshow()">☻ За что меня так нравится ЛЮБА? ☺</button>
+    </div>
+    
+    <!-- Слайдшоу -->
+    <div class="slideshow" id="slideshow">
+        <div class="close-btn" onclick="closeSlideshow()">✖</div>
+        
+        <!-- Слайд 1 -->
+        <div class="slide active" id="slide1">
+            <div class="slide-image">
+                <img src="photo1.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:20px;">
+            </div>
+            <div class="slide-title">♥ Красота со стилем ♥</div>
+            <div class="slide-text">
+                Ты красивая и стильная, у тебя есть вкус в одежде. 
+                Это как две синергии, которые настолько сильно мэтчатся, 
+                как макароны с сыром ☺ 🌟
+            </div>
+            <div class="slide-nav">
+                <button class="slide-btn" onclick="nextSlide()">Дальше ☻</button>
+            </div>
+        </div>
+        
+        <!-- Слайд 2 -->
+        <div class="slide" id="slide2">
+            <div class="slide-image">
+                <img src="photo2.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:20px;">
+            </div>
+            <div class="slide-title">♥ Веселая и харизматичная ♥</div>
+            <div class="slide-text">
+                Вот что мне нравится - что ты веселая! 
+                Плюс твой шарм харизмы хорошо комбинирует твой образ ☺ ✨
+            </div>
+            <div class="slide-nav">
+                <button class="slide-btn" onclick="prevSlide()">☺ Назад</button>
+                <button class="slide-btn" onclick="nextSlide()">Дальше ☻</button>
+            </div>
+        </div>
+        
+        <!-- Слайд 3 -->
+        <div class="slide" id="slide3">
+            <div class="slide-image">
+                <img src="photo3.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:20px;">
+            </div>
+            <div class="slide-title">♥ Твой талант и тяга к творчеству ♥</div>
+            <div class="slide-text">
+                Ну и конечно, что не у каждого такое можно встретить - 
+                твой талант и тяга к творчеству! ☻ 🎨 ✨
+            </div>
+            <div class="slide-nav">
+                <button class="slide-btn" onclick="prevSlide()">☺ Назад</button>
+                <button class="slide-btn" onclick="closeSlideshow()">Закрыть ♥</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentSlide = 1;
+        
+        // Генерация стразов
+        function createSparkles() {
+            for(let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 3 + 's';
+                document.body.appendChild(sparkle);
+            }
+        }
+        
+        // Падающие элементы
+        function createFallingItem() {
+            const items = ['🐱', '🐈', '🌹', '🌸', '🌺', '🍫', '🍬', '♥', '☺', '☻'];
+            const item = document.createElement('div');
+            item.className = 'falling-item';
+            item.textContent = items[Math.floor(Math.random() * items.length)];
+            item.style.left = Math.random() * 100 + '%';
+            item.style.animationDuration = (Math.random() * 3 + 4) + 's';
+            document.body.appendChild(item);
+            
+            setTimeout(() => item.remove(), 7000);
+        }
+        
+        // Подсчёт дней
+        function updateCounter() {
+            const startDate = new Date('2026-01-02');
+            const today = new Date();
+            const diffTime = Math.abs(today - startDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            document.getElementById('days').textContent = diffDays;
+        }
+        
+        // Показать слайдшоу
+        function showSlideshow() {
+            document.getElementById('slideshow').classList.add('active');
+            currentSlide = 1;
+            showSlide(1);
+            
+            // Запускаем конфетти
+            for(let i = 0; i < 50; i++) {
+                setTimeout(() => createFallingItem(), i * 50);
+            }
+        }
+        
+        // Закрыть слайдшоу
+        function closeSlideshow() {
+            document.getElementById('slideshow').classList.remove('active');
+        }
+        
+        // Показать слайд
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+            document.getElementById('slide' + n).classList.add('active');
+            currentSlide = n;
+        }
+        
+        // Следующий слайд
+        function nextSlide() {
+            if (currentSlide < 3) {
+                showSlide(currentSlide + 1);
+            }
+        }
+        
+        // Предыдущий слайд
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        // Закрытие по Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeSlideshow();
+            }
+        });
+        
+        // Инициализация
+        createSparkles();
+        updateCounter();
+        setInterval(createFallingItem, 2000);
+        setInterval(updateCounter, 60000);
+    </script>
+</body>
+</html>
